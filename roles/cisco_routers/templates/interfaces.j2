@@ -1,0 +1,12 @@
+!! configuring interfaces !!
+!
+{% for int in interfaces %}
+int {{int.name}}
+no shutdown
+ip address {{int.ip}} {{int.mask}}
+description {{int.desc}}
+exit
+{% endfor %}
+!
+!
+

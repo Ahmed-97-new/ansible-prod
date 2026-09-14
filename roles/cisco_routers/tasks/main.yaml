@@ -1,0 +1,21 @@
+- name: render all jinjas files into one general file
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/tmp/{{ inventory_hostname }}_{{ item | basename | regex_replace('\\.j2$', '.cfg') }}"
+  loop:
+    - base.j2
+    - interfaces.j2
+    - ospf.j2
+    - bgb.j2
+  delegate_to: localhost
+
+- name: mixing all templates into one final template
+  ansible.builtin.assemble:
+    src: "/tmp"
+    regexp: "^{{ inventory_hostname }}_.*\\.parts$"
+    dest: "/tmp/{{ inventory_hostname }}_final.cfg"
+  delegate_to: localhost
+
+- name: push this final file to remote routers
+  cisco.ios.ios_config:
+    src: "/tmp/{{ inventory_hostname }}_final.cfg"

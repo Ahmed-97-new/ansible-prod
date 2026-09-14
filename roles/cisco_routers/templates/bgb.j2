@@ -1,0 +1,11 @@
+!!! configuring routing BGB !!
+!
+{% if bgp is defined %}
+router bgp {{bgp.AS_NO}}
+neighbor {{bgp.neighbor}} remote-as {{bgp.remote_as}}
+network {{bgp.network}}
+exit
+{% endif %}
+!
+!
+

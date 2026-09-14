@@ -1,0 +1,33 @@
+hostname: "R1"
+ntp__server: "20.20.20.20"
+syslog_server: "30.30.30.30"
+
+dhcp:
+  excluded_addresses: "10.10.10.1 10.10.10.20"
+  pools:
+    - name: access
+      network: "10.10.10.0"
+      mask: "255.255.255.0"
+      default_router: "10.10.10.254"
+      dns_server: "8.8.8.8"
+interfaces:
+  - name: "g2/0"
+    ip: "192.168.10.1"
+    mask: "255.255.255.0"
+    desc: "LAN_NETWORK"
+    status: "disabled"
+
+ospf:
+    process_id: "10"
+    network: "192.168.10.0"
+    wildcard: "0.0.0.255"
+    area_id: "0"
+    passive_interfaces:
+      - "f4/0"
+      - "f4/1"
+      
+bgp:
+  AS_NO: "100"
+  remote_as: "200"
+  neighbor: "50.50.50.50"      
+  network: "192.168.110.0"

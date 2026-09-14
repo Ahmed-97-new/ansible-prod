@@ -1,0 +1,20 @@
+hostname {{inventory_hostname}}
+ntp server {{ntp__server}}
+logging host {{syslog_server}}
+!
+{% if dhcp is defined %}
+{% for dh in dhcp.pools %}
+ip dhcp pool {{dh.name}}
+network {{dh.network}} {{dh.mask}}
+default-router {{dh.default_router}}
+dns-server {{dh.dns_server}}
+exit
+{% endfor %}
+{% if dhcp.excluded_addresses is defined %}
+ip dhcp excluded-address {{dhcp.excluded_addresses}}
+{% endif %}
+{% endif %}
+!
+
+
+

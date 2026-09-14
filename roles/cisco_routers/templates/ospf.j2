@@ -1,0 +1,10 @@
+!!! configuring routing ospf !!
+!
+router ospf {{ospf.process_id}}
+network {{ospf.network}} {{ospf.wildcard}} area {{ospf.area_id}}
+{% for intf in ospf.passive_interfaces %}
+passive-interface {{intf}}
+{% endfor %}
+!
+!
+
