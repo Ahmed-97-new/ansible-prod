@@ -19,7 +19,7 @@ interfaces:
 
 ospf:
     process_id: "10"
-    network: "192.168.10.0"
+    network: "192.168.20.0"
     wildcard: "0.0.0.255"
     area_id: "0"
     passive_interfaces:
