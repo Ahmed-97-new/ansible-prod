@@ -27,7 +27,7 @@ ospf:
       - "f4/1"
       
 bgp:
-  AS_NO: "100"
+  AS_NO: "500"
   remote_as: "200"
   neighbor: "50.50.50.50"      
   network: "192.168.110.0"
